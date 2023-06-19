@@ -1,0 +1,10 @@
+spring:
+  main:
+    banner-mode: "off"
+  datasource:
+    url: jdbc:h2:mem:abnTestDB
+    username: 'sa'
+    password: ''
+    driverClassName: org.h2.Driver
+
+environment-specific-flyway-migrations: /db/migration/test
