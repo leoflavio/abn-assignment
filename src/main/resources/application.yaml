@@ -18,7 +18,8 @@ spring:
       - /db/migration/common
       - ${environment-specific-flyway-migrations}
   datasource:
-    url: jdbc:h2:mem:abndb
+#    url: jdbc:h2:mem:abndb
+    url: jdbc:h2:file:./abndb
     username: sa
     password: password
     driverClassName: org.h2.Driver
