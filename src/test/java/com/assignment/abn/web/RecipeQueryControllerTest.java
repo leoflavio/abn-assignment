@@ -23,7 +23,7 @@ class RecipeQueryControllerTest {
     @Test
     public void getRecipeById_ExistingRecipeId_ReturnsOkResponseWithRecipe() throws Exception {
         Long recipeId = 2L;
-        mockMvc.perform(get("/{id}", recipeId)
+        mockMvc.perform(get("/recipes/{recipe-id}", recipeId)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -32,12 +32,12 @@ class RecipeQueryControllerTest {
     @Test
     public void getRecipeById_NonExistingRecipeId_ReturnsNotFoundResponse() throws Exception {
         Long nonExistingRecipeId = 456L;
-        mockMvc.perform(get("/{id}", nonExistingRecipeId).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
+        mockMvc.perform(get("/recipes/{recipe-id}", nonExistingRecipeId).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNotFound());
     }
 
     @Test
     public void getAllRecipe_ReturnsOkResponseWithListOfRecipes() throws Exception {
-        mockMvc.perform(get("/list")
+        mockMvc.perform(get("/recipes")
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -50,7 +50,7 @@ class RecipeQueryControllerTest {
         String instructions = "Oven 30 min";
         Boolean vegetarian = true;
 
-        mockMvc.perform(get("/search")
+        mockMvc.perform(get("/recipes/search")
                         .param("name", name)
                         .param("numServing", String.valueOf(numServing))
                         .param("instructions", instructions)

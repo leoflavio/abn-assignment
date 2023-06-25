@@ -35,8 +35,8 @@ public class RecipeQueryController {
             @ApiResponse(responseCode = "200", description = "Found the Recipe", content = {@Content(mediaType = "application/json", schema = @Schema(implementation = RecipeQuery.class))}),
             @ApiResponse(responseCode = "400", description = "Invalid id supplied", content = @Content),
             @ApiResponse(responseCode = "404", description = "Recipe not found", content = @Content)})
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE})
-    public ResponseEntity<RecipeQuery> getRecipeById(@Parameter(description = "Recipe ID to be retrieved", example = "123") @PathVariable("id") Long id){
+    @GetMapping(value = "/recipes/{recipe-id}", produces = {MediaType.APPLICATION_JSON_VALUE})
+    public ResponseEntity<RecipeQuery> getRecipeById(@Parameter(description = "Recipe ID to be retrieved", example = "123") @PathVariable("recipe-id") Long id){
         log.info("Get recipe by id: " + id);
         var recipe = recipeService.getRecipeById(id);
         return new ResponseEntity<>(recipe, HttpStatus.OK);
@@ -47,7 +47,7 @@ public class RecipeQueryController {
             @ApiResponse(responseCode = "200", description = "Recipe retrieved"),
             @ApiResponse(responseCode = "500", description = "Error when trying to list the recipe")
     })
-    @GetMapping(value = "/list", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/recipes", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RecipeQuery>> getAllRecipe(){
         log.info("List of Recipes");
         var list = recipeService.listAll();
@@ -59,7 +59,7 @@ public class RecipeQueryController {
             @ApiResponse(responseCode = "200", description = "Recipe retrieved"),
             @ApiResponse(responseCode = "500", description = "Error when trying to search for recipe")
     })
-    @GetMapping(value = "/search", produces = {MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(value = "/recipes/search", produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<List<RecipeQuery>> searchRecipe(
             @Parameter(description = "Recipe with the name", example = "Chocolate cake")
             @RequestParam Optional<String> name,

@@ -35,7 +35,7 @@ public class RecipeCommandController {
             @ApiResponse(responseCode = "500", description = "Error when trying to create recipe")
     })
     @JsonView(Views.Create.class)
-    @PostMapping(value = "/save", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PostMapping(value = "/recipes", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Long> saveRecipe(@RequestBody RecipeCommand recipeCommand){
         log.info("Calling saveRecipe");
         var recipeId = recipeService.save(recipeCommand);
@@ -50,7 +50,7 @@ public class RecipeCommandController {
             @ApiResponse(responseCode = "500", description = "Error when trying to create recipe")
     })
     @JsonView(Views.Update.class)
-    @PutMapping(value = "/update", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping(value = "/recipes", consumes = {MediaType.APPLICATION_JSON_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE})
     public ResponseEntity<Long> updateRecipe(@RequestBody RecipeCommand recipeCommand){
         log.info("Calling updateRecipe");
         var recipeId = recipeService.update(recipeCommand);
@@ -64,8 +64,8 @@ public class RecipeCommandController {
             @ApiResponse(responseCode = "404", description = "Recipe not found"),
             @ApiResponse(responseCode = "500", description = "Error when trying to delete recipe")
     })
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteRecipeById(@Parameter(description = "Recipe ID to be deleted", example = "123") @PathVariable("id") Long id){
+    @DeleteMapping("/recipes/{recipe-id}")
+    public ResponseEntity<?> deleteRecipeById(@Parameter(description = "Recipe ID to be deleted", example = "123") @PathVariable("recipe-id") Long id){
         log.info("Calling deleteRecipeById: " + id);
         recipeService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
