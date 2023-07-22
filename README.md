@@ -76,7 +76,6 @@ My initial idea was to use CQRS (Command Query Responsibility Segregation) becau
 4. Maintainability: Clear separation of concerns improves code organization and understandability.
 5. Consistency Models: Provides the ability to choose different consistency models for reads and writes.
 6. DDD Alignment: CQRS aligns well with Domain-Driven Design principles, enhancing domain modeling.
-7. Consider CQRS's added complexity and evaluate it based on your application's specific requirements before adoption.
 
 But it has not been fully implemented. 
 The initial implementation was applied just to the `Controller layer`
