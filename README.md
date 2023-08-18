@@ -80,8 +80,8 @@ My initial idea was to use CQRS (Command Query Responsibility Segregation) becau
 But it has not been fully implemented. 
 The initial implementation was applied just to the `Controller layer`
 where I have class `RecipeCommandController` just responsible to perform operation like: save, update and delete
-and the class `RecipeQueryController` juste responsible to perform operarion to retrieve informarion
+and the class `RecipeQueryController` juste responsible to perform operarion to retrieve information
 
 I also added Integration Tests for our Endpoints, and also Unit tests for Services.
-And I am also filtering and summarizing the errors thrown by the application
+And I am also filtering and sanitizing the errors thrown by the application
 
